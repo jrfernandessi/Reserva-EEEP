@@ -8,8 +8,8 @@
 
 	<ui:define name="corpo">
 		<h:form id="frm">
-			<p:messages closable="true" autoUpdate="true" />
 			<h1>Novo usuário</h1>
+			<p:messages closable="true" autoUpdate="true" />
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Nome" for="nome" />
@@ -21,13 +21,13 @@
 				<p:outputLabel value="Senha" for="senha" />
 				<p:password id="senha" value="" required="true" strongLabel="Forte"
 					goodLabel="Bom" weakLabel="Fraco" feedback="true"
-					promptLabel="Informe uma senha" inline="true"
-					match="confirmacaoSenha" />
+					promptLabel="Informe uma senha" 
+					match="confirmacaoSenha" validatorMessage="Senhas não conferem!" />
 
 				<p:outputLabel value="Confirme a senha" for="confirmacaoSenha" />
 				<p:password id="confirmacaoSenha" required="true" />
 			</p:panelGrid>
-			<p:commandButton value="Salvar" />
+			<p:commandButton value="Salvar" style="margin-top:20px" update="@form"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
