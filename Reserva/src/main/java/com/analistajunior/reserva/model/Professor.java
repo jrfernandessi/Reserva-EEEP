@@ -2,7 +2,6 @@ package com.analistajunior.reserva.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -42,7 +41,6 @@ public class Professor implements Serializable{
 	}
 
 	@NotBlank(message="Por favor informe o e-mail.")
-	@Column(unique=true)
 	public String getEmail() {
 		return email;
 	}

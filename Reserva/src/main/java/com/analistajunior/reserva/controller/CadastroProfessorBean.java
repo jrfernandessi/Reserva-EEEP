@@ -28,7 +28,6 @@ public class CadastroProfessorBean implements Serializable{
 	
 	public void salvar(){
 		try{
-			
 			professor = cadastroProfessorService.salvar(professor);
 			limpar();
 			FacesUtil.addInfoMessage("Professor salvo com sucesso!");

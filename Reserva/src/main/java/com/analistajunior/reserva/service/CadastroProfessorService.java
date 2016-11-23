@@ -21,7 +21,7 @@ public class CadastroProfessorService implements Serializable {
 		
 		Professor professorExistente = professores.porEmail(professor.getEmail());
 		
-		if (professorExistente != null && professorExistente.equals(professor)) {
+		if (professorExistente != null && !professorExistente.equals(professor)) {
 			throw new NegocioException("Já existe um professor com o e-mail informado.");
 		}
 		return professores.guardar(professor);
