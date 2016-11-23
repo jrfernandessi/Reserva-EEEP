@@ -7,10 +7,12 @@
 	<ui:define name="titulo">Novo professor</ui:define>
 
 	<ui:define name="corpo">
-		<!--  <f:metadata>
-			<o:viewParam name="produto" value="#{cadastroProdutoBean.produto}" />
-			<f:viewAction action="#{cadastroProdutoBean.inicializar}" />
-		</f:metadata>-->
+		
+		<f:metadata>
+			<o:viewParam name="professor" value="#{cadastroProfessorBean.professor}" />
+			<f:viewAction action="#{cadastroProfessorBean.inicializar}" />
+		</f:metadata>
+		
 
 		<h:form id="frm">
 		<h1>Novo professor</h1>
@@ -20,7 +22,7 @@
 	    			<p:button value="Novo" outcome="/professores/CadastroProfessor" styleClass="cor"/>
 	    			<p:commandButton value="Salvar" id="botaoSalvar"
 	    				update="@form"
-	    				validateClient="false" />
+	    				validateClient="false" action="#{cadastroProfessorBean.salvar}"/>
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">
 	    			<p:button value="Pesquisa" outcome="/professores/PesquisaProfessores"/>
@@ -31,13 +33,13 @@
 			<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
 	    			columnClasses="rotulo, campo">
 				<p:outputLabel value="Nome" for="nome"/>
-				<p:inputText value="" id="nome" size="60" required="true"/>
+				<p:inputText value="#{cadastroProfessorBean.professor.nome}" id="nome" size="60" required="true"/>
 				
 				<p:outputLabel value="Telefone" for="telefone"/>
-				<p:inputMask mask="(99)9 9999-9999" value="" id="telefone" required="true"/>
+				<p:inputMask mask="(99)9 9999-9999" value="#{cadastroProfessorBean.professor.telefone}" id="telefone" required="true"/>
 				
 				<p:outputLabel value="E-mail" for="email"/>
-				<p:inputText value="" id="email" size="60" required="true"/>
+				<p:inputText value="#{cadastroProfessorBean.professor.email}" id="email" size="60" required="true"/>
 			</p:panelGrid>
 			
 		</h:form>
