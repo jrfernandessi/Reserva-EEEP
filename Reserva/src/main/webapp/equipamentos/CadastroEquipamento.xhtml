@@ -8,6 +8,13 @@
 	<ui:define name="titulo">Novo equipamento</ui:define>
 
 	<ui:define name="corpo">
+
+		<f:metadata>
+			<o:viewParam name="equipamento"
+				value="#{cadastroEquipamentoBean.equipamento}" />
+			<f:viewAction action="#{cadastroEquipamentoBean.inicializar}" />
+		</f:metadata>
+
 		<h:form id="frm">
 			<h1>Novo equipamento</h1>
 			<p:messages closable="true" autoUpdate="true" />
@@ -15,10 +22,11 @@
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/equipamentos/CadastroEquipamento" />
 					<p:commandButton value="Salvar" id="botaoSalvar" update="@form"
-						validateClient="false" />
+						validateClient="false" action="#{cadastroEquipamentoBean.salvar}" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" outcome="/equipamentos/PesquisaEquipamentos" />
+					<p:button value="Pesquisa"
+						outcome="/equipamentos/PesquisaEquipamentos" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -26,15 +34,21 @@
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Tombo" for="tombo" />
-				<p:inputText value="" id="tombo" required="true" />
+				<p:inputText value="#{cadastroEquipamentoBean.equipamento.tombo}"
+					id="tombo" required="true" />
 
 				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria" value="" required="true">
+				<p:selectOneMenu id="categoria"
+					value="#{cadastroEquipamentoBean.equipamento.categoria}"
+					required="true">
 					<f:selectItem itemLabel="Selecione uma Categoria" />
+					<f:selectItems value="#{cadastroEquipamentoBean.categorias}"
+						var="categoria" itemValue="#{categoria}"
+						itemLabel="#{categoria.descricao}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Número" for="numero" />
-				<p:inputText value="" id="numero" required="true" />
+				<p:inputText value="#{cadastroEquipamentoBean.equipamento.numero}" id="numero" required="true" />
 			</p:panelGrid>
 		</h:form>
 
