@@ -29,8 +29,6 @@
 
 				<p:outputLabel value="Número" for="numero" />
 				<p:inputText id="numero" value="" size="60" />
-
-				<!-- aqui vou colocar um manyCheckBox -->
 			</p:panelGrid>
 
 			<p:dataTable id="equipamentosTable" value="" var="professor"
@@ -38,12 +36,13 @@
 				rows="20" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Equipamento" style="text-align:center; width:560px">
-					<h:outputText value="152656 - Data Show 1"  />
+				<p:column headerText="Equipamento"
+					style="text-align:center; width:560px">
+					<h:outputText value="152656 - Data Show 1" />
 				</p:column>
 
-				
-				<p:column style="width: 100px; text-align: center" >
+
+				<p:column style="width: 100px; text-align: center">
 					<p:button outcome="/equipamentos/CadastroEquipamento"
 						icon="ui-icon-pencil" title="Editar">
 

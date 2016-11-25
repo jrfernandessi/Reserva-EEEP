@@ -33,7 +33,7 @@ public class Equipamento implements Serializable {
 		this.id = id;
 	}
 
-	@NotBlank(message="Por favor informe o tombo.")
+	@NotBlank
 	public String getTombo() {
 		return tombo;
 	}
@@ -42,7 +42,7 @@ public class Equipamento implements Serializable {
 		this.tombo = tombo;
 	}
 	
-	@NotNull(message="Por favor selecione uma categoria.")
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	public Categoria getCategoria() {
 		return categoria;
@@ -52,7 +52,7 @@ public class Equipamento implements Serializable {
 		this.categoria = categoria;
 	}
 
-	@NotNull(message="Por favor informe o número.")
+	@NotNull
 	public Integer getNumero() {
 		return numero;
 	}

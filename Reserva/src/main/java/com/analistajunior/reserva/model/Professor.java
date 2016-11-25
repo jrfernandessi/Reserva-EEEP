@@ -31,7 +31,7 @@ public class Professor implements Serializable{
 		this.id = id;
 	}
 
-	@NotBlank(message="Por favor informe o nome.")
+	@NotBlank
 	public String getNome() {
 		return nome;
 	}
@@ -40,7 +40,7 @@ public class Professor implements Serializable{
 		this.nome = nome;
 	}
 
-	@NotBlank(message="Por favor informe o e-mail.")
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}
@@ -49,7 +49,7 @@ public class Professor implements Serializable{
 		this.email = email;
 	}
 
-	@NotBlank(message="Por favor informe o telefone.")
+	@NotBlank
 	public String getTelefone() {
 		return telefone;
 	}

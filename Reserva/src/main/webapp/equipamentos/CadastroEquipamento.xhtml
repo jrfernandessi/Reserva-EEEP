@@ -35,12 +35,12 @@
 
 				<p:outputLabel value="Tombo" for="tombo" />
 				<p:inputText value="#{cadastroEquipamentoBean.equipamento.tombo}"
-					id="tombo" required="true" />
+					id="tombo" required="false" />
 
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria"
 					value="#{cadastroEquipamentoBean.equipamento.categoria}"
-					required="true">
+					required="false">
 					<f:selectItem itemLabel="Selecione uma Categoria" />
 					<f:selectItems value="#{cadastroEquipamentoBean.categorias}"
 						var="categoria" itemValue="#{categoria}"
@@ -48,7 +48,7 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Número" for="numero" />
-				<p:inputText value="#{cadastroEquipamentoBean.equipamento.numero}" id="numero" required="true" />
+				<p:inputText value="#{cadastroEquipamentoBean.equipamento.numero}" id="numero" required="false" />
 			</p:panelGrid>
 		</h:form>
 
