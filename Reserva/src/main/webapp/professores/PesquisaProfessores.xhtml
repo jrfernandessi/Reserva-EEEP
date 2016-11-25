@@ -15,7 +15,7 @@
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" update="@form" />
+					<p:commandButton value="Pesquisar" update="@form" action="#{pesquisaProfessorBean.pesquisar}"/>
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/professores/CadastroProfessor" />
@@ -25,28 +25,28 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="" size="60" />
+				<p:inputText id="nome" value="#{pesquisaProfessorBean.filter.nome}" size="60" />
 
 				<p:outputLabel value="E-mail" for="email" />
-				<p:inputText id="email" value="" size="60" />
+				<p:inputText id="email" value="#{pesquisaProfessorBean.filter.email}" size="60" />
 				
 			</p:panelGrid>
 
-			<p:dataTable id="professoresTable" value="" var="professor"
+			<p:dataTable id="professoresTable" value="#{pesquisaProfessorBean.filtrados}" var="professor"
 				style="margin-top: 20px" emptyMessage="Nenhum professor encontrado."
 				rows="20" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 				
 				<p:column headerText="Nome">
-					<h:outputText value="José Fernandes Almeida Junior" />
+					<h:outputText value="#{professor.nome}" />
 				</p:column>
 				
 				<p:column headerText="E-mail" >
-					<h:outputText value="junior@analistajunior.com" />
+					<h:outputText value="#{professor.email}" />
 				</p:column>
 				
 				<p:column headerText="Telefone" style="text-align:right; width:120px">
-					<h:outputText value="(88) 9 9905-0259" />
+					<h:outputText value="#{professor.telefone}" />
 				</p:column>
 				
 				<p:column style="width: 100px; text-align: center">

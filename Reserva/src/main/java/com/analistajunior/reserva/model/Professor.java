@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -41,6 +42,7 @@ public class Professor implements Serializable{
 	}
 
 	@NotBlank
+	@Email
 	public String getEmail() {
 		return email;
 	}
