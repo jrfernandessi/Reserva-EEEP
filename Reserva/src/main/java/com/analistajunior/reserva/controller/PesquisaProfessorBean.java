@@ -1,7 +1,6 @@
 package com.analistajunior.reserva.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
