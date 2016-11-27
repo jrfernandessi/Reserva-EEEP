@@ -15,7 +15,7 @@
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" update="@form" />
+					<p:commandButton value="Pesquisar" update="@form" action="#{pesquisaEquipamentoBean.pesquisar}"/>
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/equipamentos/CadastroEquipamento" />
@@ -25,20 +25,24 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Tombo" for="tombo" />
-				<p:inputText id="tombo" value="" size="60" />
+				<p:inputText id="tombo" value="#{pesquisaEquipamentoBean.filter.tombo}" size="60" />
+				
+				<p:outputLabel value="Categoria" />
+	    		<p:selectManyCheckbox value="#{pesquisaEquipamentoBean.filter.categorias}">
+	    			<f:selectItems value="#{pesquisaEquipamentoBean.categorias}" var="categoria"
+	    				itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
+	    		</p:selectManyCheckbox>
 
-				<p:outputLabel value="Número" for="numero" />
-				<p:inputText id="numero" value="" size="60" />
 			</p:panelGrid>
 
-			<p:dataTable id="equipamentosTable" value="" var="professor"
-				style="margin-top: 20px" emptyMessage="Nenhum professor encontrado."
+			<p:dataTable id="equipamentosTable" value="#{pesquisaEquipamentoBean.filtrados}" var="equipamento"
+				style="margin-top: 20px" emptyMessage="Nenhum equipamento encontrado."
 				rows="20" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
 				<p:column headerText="Equipamento"
 					style="text-align:center; width:560px">
-					<h:outputText value="152656 - Data Show 1" />
+					<h:outputText value="#{equipamento.tombo} - #{equipamento.categoria} #{equipamento.numero}" />
 				</p:column>
 
 
