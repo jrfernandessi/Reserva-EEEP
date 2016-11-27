@@ -52,15 +52,25 @@
 				<p:column style="width: 100px; text-align: center">
 					<p:button outcome="/professores/CadastroProfessor" icon="ui-icon-pencil"
 						title="Editar">
-						
+						<f:param name="professor" value="#{professor.id}" />
 					</p:button>
-					<p:commandButton icon="ui-icon-trash" title="Excluir">
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener target="#{pesquisaProfessorBean.professorSelecionado}" 
+	    					value="#{professor}" />
 						
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 			
-			
+			<p:confirmDialog header="Exclusão de professor" 
+	    		message="Tem certeza que deseja excluir o professor #{pesquisaProfessorBean.professorSelecionado.nome}?"
+	    		widgetVar="confirmacaoExclusao"	id="confirmacaoExclusaoDialog">
+	    		<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+	    		<p:commandButton value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"
+	    			action="#{pesquisaProfessorBean.excluir}" process="@this"
+	    			update=":frmPesquisa:professoresTable" id="yesButton" />
+	    	</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

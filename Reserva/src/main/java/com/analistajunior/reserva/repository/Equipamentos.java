@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -13,8 +14,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import com.analistajunior.reserva.exceptions.NegocioException;
 import com.analistajunior.reserva.model.Equipamento;
 import com.analistajunior.reserva.repository.filter.EquipamentoFilter;
+import com.analistajunior.reserva.util.jpa.Transactional;
 
 public class Equipamentos implements Serializable {
 
@@ -49,6 +52,17 @@ public class Equipamentos implements Serializable {
 				.setParameter("tombo", tombo).getSingleResult();
 		}catch(NoResultException e){
 			return null;
+		}
+	}
+	
+	@Transactional
+	public void remover(Equipamento equipamento) throws NegocioException{
+		equipamento = porId(equipamento.getId());
+		try{
+		manager.remove(equipamento);
+		manager.flush();
+		}catch (PersistenceException e) {
+			throw new NegocioException("Equipamento não pode ser excluído.");
 		}
 	}
 	

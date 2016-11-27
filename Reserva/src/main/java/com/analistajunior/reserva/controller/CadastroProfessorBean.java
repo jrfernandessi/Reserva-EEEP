@@ -54,7 +54,9 @@ public class CadastroProfessorBean implements Serializable{
 		this.professor = professor;
 	}
 	
-	
+	public boolean isEditando(){
+		return this.professor.getId() != null;
+	}
 	
 	
 	

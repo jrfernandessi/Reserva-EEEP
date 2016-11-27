@@ -58,5 +58,9 @@ public class CadastroEquipamentoBean implements Serializable {
 	public void setEquipamento(Equipamento equipamento) {
 		this.equipamento = equipamento;
 	}
+	
+	public boolean isEditando(){
+		return this.equipamento.getId() != null;
+	}
 
 }

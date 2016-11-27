@@ -15,7 +15,8 @@
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" update="@form" action="#{pesquisaEquipamentoBean.pesquisar}"/>
+					<p:commandButton value="Pesquisar" update="@form"
+						action="#{pesquisaEquipamentoBean.pesquisar}" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/equipamentos/CadastroEquipamento" />
@@ -25,38 +26,57 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Tombo" for="tombo" />
-				<p:inputText id="tombo" value="#{pesquisaEquipamentoBean.filter.tombo}" size="60" />
-				
+				<p:inputText id="tombo"
+					value="#{pesquisaEquipamentoBean.filter.tombo}" size="60" />
+
 				<p:outputLabel value="Categoria" />
-	    		<p:selectManyCheckbox value="#{pesquisaEquipamentoBean.filter.categorias}">
-	    			<f:selectItems value="#{pesquisaEquipamentoBean.categorias}" var="categoria"
-	    				itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
-	    		</p:selectManyCheckbox>
+				<p:selectManyCheckbox
+					value="#{pesquisaEquipamentoBean.filter.categorias}">
+					<f:selectItems value="#{pesquisaEquipamentoBean.categorias}"
+						var="categoria" itemValue="#{categoria}"
+						itemLabel="#{categoria.descricao}" />
+				</p:selectManyCheckbox>
 
 			</p:panelGrid>
 
-			<p:dataTable id="equipamentosTable" value="#{pesquisaEquipamentoBean.filtrados}" var="equipamento"
-				style="margin-top: 20px" emptyMessage="Nenhum equipamento encontrado."
-				rows="20" paginator="true" paginatorAlwaysVisible="false"
+			<p:dataTable id="equipamentosTable"
+				value="#{pesquisaEquipamentoBean.filtrados}" var="equipamento"
+				style="margin-top: 20px"
+				emptyMessage="Nenhum equipamento encontrado." rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
 				<p:column headerText="Equipamento"
 					style="text-align:center; width:560px">
-					<h:outputText value="#{equipamento.tombo} - #{equipamento.categoria} #{equipamento.numero}" />
+					<h:outputText
+						value="#{equipamento.categoria.descricao} #{equipamento.numero}" />
 				</p:column>
 
 
 				<p:column style="width: 100px; text-align: center">
 					<p:button outcome="/equipamentos/CadastroEquipamento"
 						icon="ui-icon-pencil" title="Editar">
-
+						<f:param name="equipamento" value="#{equipamento.id}" />
 					</p:button>
-					<p:commandButton icon="ui-icon-trash" title="Excluir">
-
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+						update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener value="#{equipamento}"
+							target="#{pesquisaEquipamentoBean.equipamentoSelecionado}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
+			<p:confirmDialog header="Exclusão de equipamento"
+				message="Tem certeza que deseja excluir o equipamento #{pesquisaEquipamentoBean.equipamentoSelecionado.tombo}?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="PF('confirmacaoExclusao').hide();"
+					action="#{pesquisaEquipamentoBean.excluir}" process="@this"
+					update=":frmPesquisa:equipamentosTable" id="yesButton" />
+			</p:confirmDialog>
 
 		</h:form>
 

@@ -16,7 +16,7 @@
 		</f:metadata>
 
 		<h:form id="frm">
-			<h1>Novo equipamento</h1>
+			<h1>#{cadastroEquipamentoBean.editando ? 'Edição de equipamento' : 'Novo equipamento'}</h1>
 			<p:messages closable="true" autoUpdate="true" />
 			<p:toolbar style="margin-top: 20px" styleClass="cor">
 				<p:toolbarGroup>

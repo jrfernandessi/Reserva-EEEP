@@ -15,7 +15,7 @@
 		
 
 		<h:form id="frm">
-		<h1>Novo professor</h1>
+		<h1>#{cadastroProfessorBean.editando ? 'Edição de professor' : 'Novo professor'}</h1>
 		<p:messages closable="true" autoUpdate="true"/>
 				<p:toolbar style="margin-top: 20px" styleClass="cor">
 	    		<p:toolbarGroup>
@@ -38,7 +38,7 @@
 				<p:outputLabel value="Telefone" for="telefone"/>
 				<p:inputMask mask="(99)9 9999-9999" value="#{cadastroProfessorBean.professor.telefone}" id="telefone" required="false"/>
 				
-				<p:outputLabel value="E-mail" for="email"/>
+				<p:outputLabel value="E-mail" for="email" />
 				<p:inputText value="#{cadastroProfessorBean.professor.email}" id="email" size="60" required="false"/>
 			</p:panelGrid>
 			
