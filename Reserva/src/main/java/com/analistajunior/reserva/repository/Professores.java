@@ -47,6 +47,7 @@ public class Professores implements Serializable {
 	public List<Professor> filtrados(ProfessorFilter filter) {
 		Session session = (Session) manager;
 
+		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Professor.class);
 
 		if (StringUtils.isNotBlank(filter.getEmail())) {
