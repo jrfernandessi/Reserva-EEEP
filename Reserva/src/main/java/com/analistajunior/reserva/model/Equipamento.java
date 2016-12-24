@@ -13,9 +13,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "equipamento")
-public class Equipamento implements Serializable {
-
+@Table(name="equipamento")
+public class Equipamento implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -85,6 +84,4 @@ public class Equipamento implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 }

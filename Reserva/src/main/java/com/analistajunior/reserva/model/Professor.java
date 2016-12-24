@@ -11,10 +11,9 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "professor")
+@Table(name="professor")
 public class Professor implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String nome;
@@ -86,5 +85,6 @@ public class Professor implements Serializable{
 	}
 	
 	
+
 
 }

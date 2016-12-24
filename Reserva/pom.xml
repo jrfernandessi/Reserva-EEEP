@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.analistajunior</groupId>
-  <artifactId>Reserva</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>war</packaging>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.analistajunior</groupId>
+	<artifactId>Reserva</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -105,7 +106,7 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Log4J --> 
+		<!-- Log4J -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -139,13 +140,14 @@
 		</dependency>
 
 		<!-- Abstração para envio de e-mails -->
+	<!-- 
 		<dependency>
 			<groupId>com.outjected</groupId>
 			<artifactId>simple-email</artifactId>
-			<version>0.2.1</version>
+			<version>0.2.5</version>
 			<scope>compile</scope>
 		</dependency>
-
+ -->
 		<!-- Requerido para envio de e-mails -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -209,7 +211,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>Reserva</finalName>
 		<plugins>
