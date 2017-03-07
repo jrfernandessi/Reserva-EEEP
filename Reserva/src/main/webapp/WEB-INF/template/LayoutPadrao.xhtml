@@ -12,6 +12,7 @@
         <h:outputStylesheet library="css" name="sistema.css" />
         <h:outputScript library="js" name="jquery.maskMoney.js"/>
         <h:outputScript library="js" name="validadores.js"/>
+        <h:outputScript library="js" name="calendario.js"/>
 	</h:head>
 
 	<h:body>
@@ -39,12 +40,12 @@
 				<h:form style="display: inline-block">
 					<p:menubar styleClass="menu-sistema">
 						<p:submenu label="Cadastros">
-							<p:menuitem value="Professores" outcome="/professores/CadastroProfessor"/>
+							<p:menuitem value="Professores" outcome="/professores/PesquisaProfessores"/>
 							<p:separator/>
-							<p:menuitem value="Equipamentos"  outcome="/equipamentos/CadastroEquipamento"/>
+							<p:menuitem value="Equipamentos"  outcome="/equipamentos/PesquisaEquipamentos"/>
 						</p:submenu>
 						<p:submenu label="Reserva">
-							<p:menuitem value="Nova Reserva" />
+							<p:menuitem value="Nova Reserva" outcome="/reservas/CadastroReserva"/>
 							<p:menuitem value="Pesquisa"  />
 						</p:submenu>
 						<p:submenu label="Relatórios">

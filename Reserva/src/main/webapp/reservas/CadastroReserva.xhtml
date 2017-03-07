@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	<ui:define name="titulo">Novo professor</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:metadata>
+			<!--  <o:viewParam name="professor" value="#{cadastroProfessorBean.professor}" />-->
+			<f:viewAction action="#{cadastroReservaBean.inicializar}" />
+		</f:metadata>
+
+		<h:form id="frm">
+			<h1>Realizar Reserva</h1>
+			<p:messages closable="true" autoUpdate="true" />
+			<p:toolbar style="margin-top: 20px" styleClass="cor">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/reservas/CadastroReserva"
+						styleClass="cor" />
+					<p:commandButton value="Salvar" id="botaoSalvar" update="@form" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Professor" for="professor" />
+				<p:autoComplete id="professor" required="true"
+					value="#{cadastroReservaBean.reserva.professor}"
+					completeMethod="#{cadastroReservaBean.completarProfessor}"
+					forceSelection="true" var="professor" itemLabel="#{professor.nome}"
+					itemValue="#{professor}" dropdown="true" />
+
+				<p:outputLabel value="Equipamento" for="equipamento" />
+				<p:selectOneMenu id="equipamento" required="true"
+					value="#{cadastroReservaBean.reserva.equipamento}">
+					<f:selectItem itemLabel="Selecione um equipamento" />
+					<f:selectItems value="#{cadastroReservaBean.equipamentos}" var="e"
+						itemValue="#{e}"
+						itemLabel="#{e.categoria}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Data da Reserva" for="dataReserva" />
+				<p:calendar id="dataReserva" required="true" locale="pt"
+					pattern="dd/MM/yyyy"
+					value="#{cadastroReservaBean.reserva.dataReserva}" />
+
+				<p:outputLabel value="Aulas para reserva" />
+				<h:column>
+					<p:outputLabel value="1" />
+					<p:selectBooleanCheckbox
+						value="#{cadastroReservaBean.reserva.aula1}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="2" />
+					<p:selectBooleanCheckbox
+						value="#{cadastroReservaBean.reserva.aula2}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="3" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula3}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="4" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula4}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="5" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula5}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="6" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula6}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="7" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula7}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="8" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula8}" disabled="#{false}"
+						styleClass="checkBox" />
+					<br />
+					<p:outputLabel value="9" />
+					<p:selectBooleanCheckbox value="#{cadastroReservaBean.reserva.aula9}" disabled="#{false}" />
+					<br />
+				</h:column>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

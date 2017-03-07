@@ -4,26 +4,28 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
 
-import org.apache.commons.lang3.StringUtils;
 
 import com.analistajunior.reserva.model.Professor;
 import com.analistajunior.reserva.repository.Professores;
-
+import com.analistajunior.reserva.util.cdi.CDIServiceLocator;
 
 
 @FacesConverter(forClass = Professor.class)
 public class ProfessorConverter implements Converter{
 	
-	@Inject
+//	@Inject
 	Professores professores;
-
+	
+	public ProfessorConverter() {
+		professores = CDIServiceLocator.getBean(Professores.class);
+	}
+	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Professor retorno = null;
 		
-		if (StringUtils.isNotEmpty(value)) {
+		if (value != null) {
 			Long id = new Long(value);
 			retorno = professores.porId(id);
 		}

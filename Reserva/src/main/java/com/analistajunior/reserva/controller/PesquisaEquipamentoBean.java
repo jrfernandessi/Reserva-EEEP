@@ -33,17 +33,21 @@ public class PesquisaEquipamentoBean implements Serializable {
 		filter = new EquipamentoFilter();
 	}
 
+	public void incializar() {
+		if (FacesUtil.isNotPostback())
+			filtrados = equipamentos.listarEquipamentos();
+	}
+
 	public void pesquisar() {
 		filtrados = equipamentos.filtrados(filter);
 	}
 
-	public void excluir(){
-		try{
+	public void excluir() {
+		try {
 			equipamentos.remover(equipamentoSelecionado);
 			filtrados.remove(equipamentoSelecionado);
-			FacesUtil.addInfoMessage("Equipamento "+equipamentoSelecionado.getTombo()
-				+" foi excluído com sucesso.");
-		}catch (NegocioException e) {
+			FacesUtil.addInfoMessage("Equipamento " + equipamentoSelecionado.getTombo() + " foi excluído com sucesso.");
+		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
 	}

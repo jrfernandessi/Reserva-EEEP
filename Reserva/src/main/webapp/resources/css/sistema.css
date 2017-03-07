@@ -122,3 +122,8 @@ h1 {
 .ui-state-disabled {
 	opacity: .80 !important;
 }
+
+.checkBox{
+	margin-bottom: 5px;
+	padding: 0px;
+}

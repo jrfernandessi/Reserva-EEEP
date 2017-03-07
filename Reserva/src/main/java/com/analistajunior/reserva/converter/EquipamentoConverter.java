@@ -4,23 +4,26 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
 
-import org.apache.commons.lang3.StringUtils;
 
 import com.analistajunior.reserva.model.Equipamento;
 import com.analistajunior.reserva.repository.Equipamentos;
+import com.analistajunior.reserva.util.cdi.CDIServiceLocator;
 
 @FacesConverter(forClass=Equipamento.class)
 public class EquipamentoConverter implements Converter{
-	@Inject
+//	@Inject
 	Equipamentos equipamentos;
-
+	
+	public EquipamentoConverter() {
+		equipamentos = CDIServiceLocator.getBean(Equipamentos.class);
+	}
+	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Equipamento retorno = null;
 		
-		if (StringUtils.isNotEmpty(value)) {
+		if (value!=null) {
 			Long id = new Long(value);
 			retorno = equipamentos.porId(id);
 		}

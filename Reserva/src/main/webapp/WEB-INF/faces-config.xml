@@ -20,7 +20,7 @@
 
 	<factory>
 	    <exception-handler-factory>
-	        org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
+	        com.analistajunior.reserva.util.jsf.JsfExceptionHandlerFactory
 	    </exception-handler-factory>
 	</factory>
 

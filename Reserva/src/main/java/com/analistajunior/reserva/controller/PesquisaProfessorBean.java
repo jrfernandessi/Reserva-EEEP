@@ -32,15 +32,20 @@ public class PesquisaProfessorBean implements Serializable {
 		filter = new ProfessorFilter();
 	}
 
+	public void inicializar() {
+		if (FacesUtil.isNotPostback())
+			filtrados = professores.listarProfessores();
+	}
+
 	public void pesquisar() {
 		filtrados = professores.filtrados(filter);
 	}
-	
-	public void excluir(){
+
+	public void excluir() {
 		try {
 			professores.remover(professorSelecionado);
 			filtrados.remove(professorSelecionado);
-			FacesUtil.addInfoMessage("Professor "+professorSelecionado.getNome()+" foi excluído com sucesso.");
+			FacesUtil.addInfoMessage("Professor " + professorSelecionado.getNome() + " foi excluído com sucesso.");
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}

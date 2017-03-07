@@ -30,6 +30,11 @@ public class Professores implements Serializable {
 	public Professor guardar(Professor professor) {
 		return manager.merge(professor);
 	}
+	
+	public List<Professor> porNome(String nome){
+		return manager.createQuery("from Professor where upper(nome) like :nome", Professor.class)
+				.setParameter("nome", nome.toUpperCase()+"%").getResultList();
+	}
 
 	public Professor porEmail(String email) {
 		try {
@@ -59,9 +64,8 @@ public class Professores implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<Professor> filtrados(ProfessorFilter filter) {
-		Session session = (Session) manager;
+		Session session = manager.unwrap(Session.class);
 
-		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Professor.class);
 
 		if (StringUtils.isNotBlank(filter.getEmail())) {
@@ -72,6 +76,14 @@ public class Professores implements Serializable {
 		}
 
 		return criteria.addOrder(Order.asc("nome")).list();
+	}
+	
+	public List<Professor> listarProfessores(){
+		try {
+			return manager.createQuery("from Professor", Professor.class).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 }

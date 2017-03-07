@@ -8,6 +8,9 @@
 	<ui:define name="titulo">Pesquisa de professores</ui:define>
 
 	<ui:define name="corpo">
+		<f:metadata>
+			<f:viewAction action="#{pesquisaProfessorBean.inicializar}" />
+		</f:metadata>
 		<h:form id="frmPesquisa">
 			<h1>Pesquisa de professores</h1>
 
@@ -15,7 +18,8 @@
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" update="@form" action="#{pesquisaProfessorBean.pesquisar}"/>
+					<p:commandButton value="Pesquisar" update="@form"
+						action="#{pesquisaProfessorBean.pesquisar}" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/professores/CadastroProfessor" />
@@ -25,52 +29,60 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{pesquisaProfessorBean.filter.nome}" size="60" />
+				<p:inputText id="nome" value="#{pesquisaProfessorBean.filter.nome}"
+					size="60" />
 
 				<p:outputLabel value="E-mail" for="email" />
-				<p:inputText id="email" value="#{pesquisaProfessorBean.filter.email}" size="60" />
-				
+				<p:inputText id="email"
+					value="#{pesquisaProfessorBean.filter.email}" size="60" />
+
 			</p:panelGrid>
 
-			<p:dataTable id="professoresTable" value="#{pesquisaProfessorBean.filtrados}" var="professor"
+			<p:dataTable id="professoresTable"
+				value="#{pesquisaProfessorBean.filtrados}" var="professor"
 				style="margin-top: 20px" emptyMessage="Nenhum professor encontrado."
 				rows="20" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
-				
+
 				<p:column headerText="Nome">
 					<h:outputText value="#{professor.nome}" />
 				</p:column>
-				
-				<p:column headerText="E-mail" >
+
+				<p:column headerText="E-mail">
 					<h:outputText value="#{professor.email}" />
 				</p:column>
-				
-				<p:column headerText="Telefone" style="text-align:right; width:120px">
+
+				<p:column headerText="Telefone"
+					style="text-align:right; width:120px">
 					<h:outputText value="#{professor.telefone}" />
 				</p:column>
-				
+
 				<p:column style="width: 100px; text-align: center">
-					<p:button outcome="/professores/CadastroProfessor" icon="ui-icon-pencil"
-						title="Editar">
+					<p:button outcome="/professores/CadastroProfessor"
+						icon="ui-icon-pencil" title="Editar">
 						<f:param name="professor" value="#{professor.id}" />
 					</p:button>
-					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
-						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
-						<f:setPropertyActionListener target="#{pesquisaProfessorBean.professorSelecionado}" 
-	    					value="#{professor}" />
-						
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+						update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener
+							target="#{pesquisaProfessorBean.professorSelecionado}"
+							value="#{professor}" />
+
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-			
-			<p:confirmDialog header="Exclusão de professor" 
-	    		message="Tem certeza que deseja excluir o professor #{pesquisaProfessorBean.professorSelecionado.nome}?"
-	    		widgetVar="confirmacaoExclusao"	id="confirmacaoExclusaoDialog">
-	    		<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
-	    		<p:commandButton value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"
-	    			action="#{pesquisaProfessorBean.excluir}" process="@this"
-	    			update=":frmPesquisa:professoresTable" id="yesButton" />
-	    	</p:confirmDialog>
+
+			<p:confirmDialog header="Exclusão de professor"
+				message="Tem certeza que deseja excluir o professor #{pesquisaProfessorBean.professorSelecionado.nome}?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="PF('confirmacaoExclusao').hide();"
+					action="#{pesquisaProfessorBean.excluir}" process="@this"
+					update=":frmPesquisa:professoresTable" id="yesButton" />
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>
