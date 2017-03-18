@@ -56,11 +56,11 @@
 						itemValue="#{e}"
 						itemLabel="#{e.categoria.descricao} - #{e.numero}" />
 					<p:ajax listener="#{cadastroReservaBean.verificarReserva}"
-						update="aulas" />
+						update="aula1" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Aulas para reserva" />
-				<h:column id="aulas">
+				<h:column>
 					<p:outputLabel value="1" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula1}"

@@ -32,7 +32,7 @@ public class Reservas implements Serializable {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Reserva.class);
 		criteria.add(Restrictions.eq("equipamento", reserva.getEquipamento()));
-		criteria.add(Restrictions.eq("dataReserva", reserva.getDataReserva()));
+		criteria.add(Restrictions.between("dataReserva", reserva.getDataReserva(), reserva.getDataReserva()));
 		
 		return criteria.list();
 		
