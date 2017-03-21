@@ -67,7 +67,7 @@ public class Reserva implements Serializable {
 		this.equipamento = equipamento;
 	}
 
-	@NotNull
+	@NotNull(message="deve ser informada")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_reserva", nullable = false)
 	public Date getDataReserva() {
@@ -174,5 +174,6 @@ public class Reserva implements Serializable {
 			return false;
 		return true;
 	}
+	
 
 }
