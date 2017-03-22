@@ -3,9 +3,12 @@ package com.analistajunior.reserva.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -13,14 +16,15 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "professor")
 public class Professor implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String nome;
 	private String email;
 	private String telefone;
-	
+	private String senha;
+	private TipoUsuario tipoUsuario;
 
 	@Id
 	@GeneratedValue
@@ -30,6 +34,26 @@ public class Professor implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	@NotBlank
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	@NotBlank

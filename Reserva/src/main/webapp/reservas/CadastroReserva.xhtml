@@ -18,7 +18,7 @@
 
 		<h:form id="frm">
 			<h1>Realizar Reserva</h1>
-			<p:messages closable="true" autoUpdate="true" />
+			<p:messages closable="true" autoUpdate="true" id="msg"/>
 			<p:toolbar style="margin-top: 20px" styleClass="cor">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/reservas/CadastroReserva"
@@ -27,41 +27,33 @@
 						action="#{cadastroReservaBean.salvar}" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" />
+					<p:button value="Pesquisa" outcome="/Home" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 
-				<p:outputLabel value="Professor" for="professor" />
-				<p:autoComplete id="professor" required="false"
-					value="#{cadastroReservaBean.reserva.professor}"
-					completeMethod="#{cadastroReservaBean.completarProfessor}"
-					forceSelection="true" var="professor" itemLabel="#{professor.nome}"
-					itemValue="#{professor}" dropdown="true" />
-
-
 				<p:outputLabel value="Data da Reserva" for="dataReserva" />
 				<p:calendar id="dataReserva" required="false" locale="pt"
 					pattern="dd/MM/yyyy"
-					value="#{cadastroReservaBean.reserva.dataReserva}">
+					value="#{cadastroReservaBean.reserva.dataReserva}" disabled="#{cadastroReservaBean.editando}">
+					<p:ajax listener="#{cadastroReservaBean.verificarReserva}"
+						update="aula1 aula2 aula3 aula4 aula5 aula6 aula7 aula8 aula9"
+						process="dataReserva" event="dateSelect" />
 				</p:calendar>
 
 				<p:outputLabel value="Equipamento" for="equipamento" />
 				<p:selectOneMenu id="equipamento" required="false"
-					value="#{cadastroReservaBean.reserva.equipamento}">
-					<f:selectItem itemLabel="Selecione um equipamento" />
+					value="#{cadastroReservaBean.reserva.equipamento}"
+					disabled="#{cadastroReservaBean.editando}">
+					<f:selectItem itemLabel="Selecione um equipamento"/>
 					<f:selectItems value="#{cadastroReservaBean.equipamentos}" var="e"
 						itemValue="#{e}"
 						itemLabel="#{e.categoria.descricao} - #{e.numero}" />
 					<p:ajax listener="#{cadastroReservaBean.verificarReserva}"
-<<<<<<< HEAD
 						update="aula1 aula2 aula3 aula4 aula5 aula6 aula7 aula8 aula9"
 						process="dataReserva equipamento" event="itemSelect" />
-=======
-						update="aula1" />
->>>>>>> a89fba85d244618e243cf5908c0ae69efffc3fe7
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Aulas para reserva" />
@@ -69,55 +61,56 @@
 					<p:outputLabel value="1" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula1}"
-						disabled="#{cadastroReservaBean.reserva.aula1}"
-						styleClass="checkBox" id="aula1" />
+						disabled="#{cadastroReservaBean.d1}" styleClass="checkBox"
+						id="aula1" />
 					<br />
 					<p:outputLabel value="2" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula2}"
-						disabled="#{cadastroReservaBean.reserva.aula2}"
-						styleClass="checkBox" id="aula2" />
+						disabled="#{cadastroReservaBean.d2}" styleClass="checkBox"
+						id="aula2" />
 					<br />
 					<p:outputLabel value="3" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula3}"
-						disabled="#{cadastroReservaBean.reserva.aula3}"
-						styleClass="checkBox" id="aula3" />
+						disabled="#{cadastroReservaBean.d3}" styleClass="checkBox"
+						id="aula3" />
 					<br />
 					<p:outputLabel value="4" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula4}"
-						disabled="#{cadastroReservaBean.reserva.aula4}"
-						styleClass="checkBox" id="aula4" />
+						disabled="#{cadastroReservaBean.d4}" styleClass="checkBox"
+						id="aula4" />
 					<br />
 					<p:outputLabel value="5" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula5}"
-						disabled="#{cadastroReservaBean.reserva.aula5}"
-						styleClass="checkBox" id="aula5" />
+						disabled="#{cadastroReservaBean.d5}" styleClass="checkBox"
+						id="aula5" />
 					<br />
 					<p:outputLabel value="6" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula6}"
-						disabled="#{cadastroReservaBean.reserva.aula6}"
-						styleClass="checkBox" id="aula6" />
+						disabled="#{cadastroReservaBean.d6}" styleClass="checkBox"
+						id="aula6" />
 					<br />
 					<p:outputLabel value="7" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula7}"
-						disabled="#{cadastroReservaBean.reserva.aula7}"
-						styleClass="checkBox" id="aula7" />
+						disabled="#{cadastroReservaBean.d7}" styleClass="checkBox"
+						id="aula7" />
 					<br />
 					<p:outputLabel value="8" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula8}"
-						disabled="#{cadastroReservaBean.reserva.aula8}"
-						styleClass="checkBox" id="aula8" />
+						disabled="#{cadastroReservaBean.d8}" styleClass="checkBox"
+						id="aula8" />
 					<br />
 					<p:outputLabel value="9" />
 					<p:selectBooleanCheckbox
 						value="#{cadastroReservaBean.reserva.aula9}"
-						disabled="#{cadastroReservaBean.reserva.aula9}" id="aula9" />
+						disabled="#{cadastroReservaBean.d9}" styleClass="checkBox"
+						id="aula9" />
 					<br />
 				</h:column>
 			</p:panelGrid>

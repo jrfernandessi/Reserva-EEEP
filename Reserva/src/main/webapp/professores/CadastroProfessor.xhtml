@@ -7,41 +7,68 @@
 	<ui:define name="titulo">Novo professor</ui:define>
 
 	<ui:define name="corpo">
-		
+
 		<f:metadata>
-			<o:viewParam name="professor" value="#{cadastroProfessorBean.professor}" />
-			<f:viewAction action="#{cadastroProfessorBean.inicializar}"/>
+			<o:viewParam name="professor"
+				value="#{cadastroProfessorBean.professor}" />
+			<f:viewAction action="#{cadastroProfessorBean.inicializar}" />
 		</f:metadata>
-		
+
 
 		<h:form id="frm">
-		<h1>#{cadastroProfessorBean.editando ? 'Edição de professor' : 'Novo professor'}</h1>
+			<h1>#{cadastroProfessorBean.editando ? 'Edição de professor' :
+				'Novo professor'}</h1>
 			<p:messages closable="true" autoUpdate="true" />
 			<p:toolbar style="margin-top: 20px" styleClass="cor">
-	    		<p:toolbarGroup>
-	    			<p:button value="Novo" outcome="/professores/CadastroProfessor" styleClass="cor"/>
-	    			<p:commandButton value="Salvar" id="botaoSalvar"
-	    				update="@form"
-	    				validateClient="false" action="#{cadastroProfessorBean.salvar}"/>
-	    		</p:toolbarGroup>
-	    		<p:toolbarGroup align="right">
-	    			<p:button value="Pesquisa" outcome="/professores/PesquisaProfessores"/>
-	    		</p:toolbarGroup>
-	    	</p:toolbar>
-		
-		
-			<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
-	    			columnClasses="rotulo, campo">
-				<p:outputLabel value="Nome" for="nome"/>
-				<p:inputText value="#{cadastroProfessorBean.professor.nome}" id="nome" size="60" required="false"/>
-				
-				<p:outputLabel value="Telefone" for="telefone"/>
-				<p:inputMask mask="(99)9 9999-9999" value="#{cadastroProfessorBean.professor.telefone}" id="telefone" required="false"/>
-				
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/professores/CadastroProfessor"
+						styleClass="cor" />
+					<p:commandButton value="Salvar" id="botaoSalvar" update="@form"
+						validateClient="false" action="#{cadastroProfessorBean.salvar}" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa"
+						outcome="/professores/PesquisaProfessores" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText value="#{cadastroProfessorBean.professor.nome}"
+					id="nome" size="60" required="false" />
+
+				<p:outputLabel value="Telefone" for="telefone" />
+				<p:inputMask mask="(99)9 9999-9999"
+					value="#{cadastroProfessorBean.professor.telefone}" id="telefone"
+					required="false" />
+
+				<p:outputLabel value="Categoria" for="categoria" />
+				<p:selectOneMenu id="categoria"
+					value="#{cadastroProfessorBean.professor.tipoUsuario}"
+					required="false">
+					<f:selectItem itemLabel="Selecione uma Categoria" />
+					<f:selectItems value="#{cadastroProfessorBean.tipos}"
+						var="categoria" itemValue="#{categoria}"
+						itemLabel="#{categoria.descricao}" />
+				</p:selectOneMenu>
+
 				<p:outputLabel value="E-mail" for="email" />
-				<p:inputText value="#{cadastroProfessorBean.professor.email}" id="email" size="60" required="false"/>
+				<p:inputText value="#{cadastroProfessorBean.professor.email}"
+					id="email" size="60" required="false" />
+
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password value="#{cadastroProfessorBean.professor.senha}"
+					id="senha" match="confirmarSenha"
+					validatorMessage="Senha não conferem." />
+
+				<p:outputLabel value="Confirmar Senha" for="confirmarSenha" />
+				<p:password id="confirmarSenha" />
+
+
 			</p:panelGrid>
-			
+
 		</h:form>
 	</ui:define>
 </ui:composition>

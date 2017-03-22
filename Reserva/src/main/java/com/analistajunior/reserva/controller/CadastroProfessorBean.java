@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import com.analistajunior.reserva.exceptions.NegocioException;
 import com.analistajunior.reserva.model.Professor;
+import com.analistajunior.reserva.model.TipoUsuario;
 import com.analistajunior.reserva.service.CadastroProfessorService;
 import com.analistajunior.reserva.util.jsf.FacesUtil;
 
@@ -58,6 +59,8 @@ public class CadastroProfessorBean implements Serializable{
 		return this.professor.getId() != null;
 	}
 	
-	
+	public TipoUsuario[] getTipos(){
+		return TipoUsuario.values();
+	}
 	
 }

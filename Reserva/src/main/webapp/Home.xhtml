@@ -1,20 +1,145 @@
 <ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
+	<!-- <f:metadata>
+		<f:viewParam name="dummy" />
+	</f:metadata>-->
 	<f:metadata>
-		<f:viewParam name="dummy"/>
+		<f:viewParam name="dummy" />
+		<f:viewAction action="#{pesquisaReservaBean.inicializar}" />
 	</f:metadata>
-
 	<ui:define name="titulo">Dashboard</ui:define>
 
 	<ui:define name="corpo">
-		
-		conteúdo
-		
+
+		<h:form id="frmPesquisa">
+			<h1>Seja bem vindo #{seguranca.nomeUsuario}</h1>
+
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" update="@form"
+						action="#{pesquisaReservaBean.pesquisar}" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/reservas/CadastroReserva" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="Data" for="data" />
+				<p:calendar id="data" locale="pt" pattern="dd/MM/yyyy"
+					value="#{pesquisaReservaBean.filter.data}" size="60" />
+
+			</p:panelGrid>
+
+			<p:dataTable id="reservasTable"
+				value="#{pesquisaReservaBean.filtrados}" var="reserva"
+				style="margin-top: 20px" emptyMessage="Nenhuma reserva encontrada."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Data">
+					<h:outputText
+						value="#{reserva.equipamento.categoria.descricao} 
+						#{reserva.equipamento.numero}" />
+				</p:column>
+
+				<p:column headerText="Data">
+					<h:outputText value="#{reserva.dataReserva}" >
+						<f:convertDateTime locale="pt" pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</p:column>
+				
+				<p:column>
+					<p:outputLabel value="1" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula1}"
+						disabled="true"
+						styleClass="checkBox" id="aula1" />
+
+					<p:outputLabel value="2" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula2}"
+						disabled="true"
+						styleClass="checkBox" id="aula2" />
+
+					<p:outputLabel value="3" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula3}"
+						disabled="true"
+						styleClass="checkBox" id="aula3" />
+
+					<p:outputLabel value="4" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula4}"
+						disabled="true"
+						styleClass="checkBox" id="aula4" />
+
+					<p:outputLabel value="5" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula5}"
+						disabled="true"
+						styleClass="checkBox" id="aula5" />
+
+					<p:outputLabel value="6" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula6}"
+						disabled="true"
+						styleClass="checkBox" id="aula6" />
+
+					<p:outputLabel value="7" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula7}"
+						disabled="true"
+						styleClass="checkBox" id="aula7" />
+
+					<p:outputLabel value="8" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula8}"
+						disabled="true"
+						styleClass="checkBox" id="aula8" />
+
+					<p:outputLabel value="9" />
+					<p:selectBooleanCheckbox
+						value="#{reserva.aula9}"
+						disabled="true" id="aula9" />
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button outcome="/reservas/CadastroReserva" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="reserva" value="#{reserva.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+						update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener
+							target="#{pesquisaReservaBean.reservaSelecionada}"
+							value="#{reserva}" />
+					</p:commandButton>
+				</p:column>
+
+
+			</p:dataTable>
+			<p:confirmDialog header="Exclusão de reserva"
+				message="Tem certeza que deseja excluir a reserva #{pesquisaReservaBean.reservaSelecionada.equipamento.categoria.descricao} #{pesquisaReservaBean.reservaSelecionada.equipamento.numero}?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="PF('confirmacaoExclusao').hide();" action="#{pesquisaReservaBean.excluir}"
+					process="@this" update=":frmPesquisa:reservasTable" id="yesButton" />
+			</p:confirmDialog>
+
+		</h:form>
+
 	</ui:define>
 
 </ui:composition>

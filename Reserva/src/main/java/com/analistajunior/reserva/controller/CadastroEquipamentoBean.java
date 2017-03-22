@@ -20,7 +20,7 @@ public class CadastroEquipamentoBean implements Serializable {
 
 	@Inject
 	private CadastroEquipamentoService cadastroEquipamentoService;
-
+	
 	private Equipamento equipamento;
 
 	public CadastroEquipamentoBean() {
@@ -62,5 +62,8 @@ public class CadastroEquipamentoBean implements Serializable {
 	public boolean isEditando(){
 		return this.equipamento.getId() != null;
 	}
+
+	
+	
 
 }

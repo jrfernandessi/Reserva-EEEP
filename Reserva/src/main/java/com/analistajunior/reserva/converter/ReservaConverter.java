@@ -8,11 +8,16 @@ import javax.faces.convert.FacesConverter;
 
 import com.analistajunior.reserva.model.Reserva;
 import com.analistajunior.reserva.repository.Reservas;
+import com.analistajunior.reserva.util.cdi.CDIServiceLocator;
 
 @FacesConverter(forClass = Reserva.class)
 public class ReservaConverter implements Converter{
 	
 	private Reservas reservas;
+	
+	public ReservaConverter() {
+		reservas = CDIServiceLocator.getBean(Reservas.class);
+	}
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
