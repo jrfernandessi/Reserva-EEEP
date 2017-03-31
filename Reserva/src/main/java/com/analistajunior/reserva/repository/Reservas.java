@@ -9,7 +9,6 @@ import javax.persistence.PersistenceException;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.analistajunior.reserva.exceptions.NegocioException;
@@ -62,8 +61,14 @@ public class Reservas implements Serializable {
 		if (filtro.getData() != null) {
 			criteria.add(Restrictions.eq("dataReserva", filtro.getData()));
 		}
+		if(filtro.getEquipamento() != null){
+			criteria.add(Restrictions.eq("equipamento", filtro.getEquipamento()));
+		}
+		if(filtro.getProfessor() != null){
+			criteria.add(Restrictions.eq("professor", filtro.getProfessor()));
+		}
 
-		return criteria.addOrder(Order.desc("dataReserva")).list();
+		return criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")

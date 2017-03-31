@@ -10,8 +10,10 @@ import javax.inject.Named;
 
 import com.analistajunior.reserva.exceptions.NegocioException;
 import com.analistajunior.reserva.model.Equipamento;
+import com.analistajunior.reserva.model.Professor;
 import com.analistajunior.reserva.model.Reserva;
 import com.analistajunior.reserva.repository.Equipamentos;
+import com.analistajunior.reserva.repository.Professores;
 import com.analistajunior.reserva.repository.Reservas;
 import com.analistajunior.reserva.security.UsuarioLogado;
 import com.analistajunior.reserva.security.UsuarioSistema;
@@ -32,6 +34,9 @@ public class CadastroReservaBean implements Serializable {
 
 	@Inject
 	private Reservas reservas;
+	
+	@Inject
+	private Professores professores;
 
 	@Inject
 	@UsuarioLogado
@@ -55,7 +60,7 @@ public class CadastroReservaBean implements Serializable {
 
 	@SuppressWarnings("deprecation")
 	public Date getUltimoDia() {
-		ultimoDia.setDate(dataDeHoje.getDate() + 7);
+		ultimoDia.setDate(dataDeHoje.getDate()+6);
 		return ultimoDia;
 	}
 
@@ -276,6 +281,10 @@ public class CadastroReservaBean implements Serializable {
 			d9 = false;
 		}
 	}
+	
+	public List<Professor> completarProfessor(String nome) {
+		return professores.porNome(nome);
+	}
 
 	public Reserva getReserva() {
 		return reserva;
@@ -368,5 +377,7 @@ public class CadastroReservaBean implements Serializable {
 	public void setEditando(boolean editado) {
 		this.editando = editado;
 	}
+	
+
 
 }

@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.analistajunior.reserva.exceptions.NegocioException;
+import com.analistajunior.reserva.model.Equipamento;
 import com.analistajunior.reserva.model.Reserva;
+import com.analistajunior.reserva.repository.Equipamentos;
 import com.analistajunior.reserva.repository.Reservas;
 import com.analistajunior.reserva.repository.filter.ReservaFilter;
 import com.analistajunior.reserva.security.UsuarioLogado;
@@ -26,6 +28,11 @@ public class PesquisaReservaBean implements Serializable {
 	private ReservaFilter filter;
 	private Reserva reservaSelecionada;
 	
+	private List<Equipamento> equipamentos;
+	
+	@Inject
+	private Equipamentos equipamentoRepository;
+	
 
 	@Inject
 	@UsuarioLogado
@@ -38,13 +45,15 @@ public class PesquisaReservaBean implements Serializable {
 	}
 
 	public void inicializar() {
-//		Professor professor = professores.porEmail(user.getUsuario().getEmail());
-//		System.out.println("estou aqui");
+		equipamentos = equipamentoRepository.listarEquipamentos();
 		if (FacesUtil.isNotPostback()){
 			filtrados = reservas.porProfessor(user.getUsuario());
 		}
-//		FacesUtil.addInfoMessage(filtrados.size() + "");
 		
+	}
+	
+	public void incializarPesquisa(){
+		equipamentos = equipamentoRepository.listarEquipamentos();
 	}
 	
 	public void excluir(){
@@ -84,5 +93,11 @@ public class PesquisaReservaBean implements Serializable {
 	public void setFiltrados(List<Reserva> filtrados) {
 		this.filtrados = filtrados;
 	}
+
+	public List<Equipamento> getEquipamentos() {
+		return equipamentos;
+	}
+	
+	
 
 }

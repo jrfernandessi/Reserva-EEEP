@@ -5,9 +5,6 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<!-- <f:metadata>
-		<f:viewParam name="dummy" />
-	</f:metadata>-->
 	<f:metadata>
 		<f:viewParam name="dummy" />
 		<f:viewAction action="#{pesquisaReservaBean.inicializar}" />
@@ -27,7 +24,7 @@
 						action="#{pesquisaReservaBean.pesquisar}" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/reservas/CadastroReserva" />
+					<p:button value="Nova reserva" outcome="/reservas/CadastroReserva" />
 				</p:toolbarGroup>
 			</p:toolbar>
 

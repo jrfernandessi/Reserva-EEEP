@@ -18,7 +18,7 @@
 
 		<h:form id="frm">
 			<h1>Realizar Reserva</h1>
-			<p:messages closable="true" autoUpdate="true" id="msg"/>
+			<p:messages closable="true" autoUpdate="true" id="msg" />
 			<p:toolbar style="margin-top: 20px" styleClass="cor">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/reservas/CadastroReserva"
@@ -37,7 +37,10 @@
 				<p:outputLabel value="Data da Reserva" for="dataReserva" />
 				<p:calendar id="dataReserva" required="false" locale="pt"
 					pattern="dd/MM/yyyy"
-					value="#{cadastroReservaBean.reserva.dataReserva}" disabled="#{cadastroReservaBean.editando}">
+					value="#{cadastroReservaBean.reserva.dataReserva}"
+					disabled="#{cadastroReservaBean.editando}"
+					mindate="#{cadastroReservaBean.dataDeHoje}"
+					maxdate="#{cadastroReservaBean.ultimoDia}">
 					<p:ajax listener="#{cadastroReservaBean.verificarReserva}"
 						update="aula1 aula2 aula3 aula4 aula5 aula6 aula7 aula8 aula9"
 						process="dataReserva" event="dateSelect" />
@@ -47,7 +50,7 @@
 				<p:selectOneMenu id="equipamento" required="false"
 					value="#{cadastroReservaBean.reserva.equipamento}"
 					disabled="#{cadastroReservaBean.editando}">
-					<f:selectItem itemLabel="Selecione um equipamento"/>
+					<f:selectItem itemLabel="Selecione um equipamento" />
 					<f:selectItems value="#{cadastroReservaBean.equipamentos}" var="e"
 						itemValue="#{e}"
 						itemLabel="#{e.categoria.descricao} - #{e.numero}" />
