@@ -52,7 +52,7 @@ public class PesquisaReservaBean implements Serializable {
 		
 	}
 	
-	public void incializarPesquisa(){
+	public void inicializarPesquisa(){
 		equipamentos = equipamentoRepository.listarEquipamentos();
 	}
 	
