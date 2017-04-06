@@ -43,10 +43,10 @@ public class Seguranca {
 		return usuario;
 	}
 	
-//	public boolean isEmitirPedidoPermitido() {
-//		return externalContext.isUserInRole("ADMINISTRADORES") 
-//				|| externalContext.isUserInRole("VENDEDORES");
-//	}
+	public boolean isMostrar() {
+		return externalContext.isUserInRole("Administrador") 
+				|| externalContext.isUserInRole("Diretor");
+	}
 //	
 //	public boolean isCancelarPedidoPermitido() {
 //		return externalContext.isUserInRole("ADMINISTRADORES") 

@@ -39,7 +39,7 @@
 
 			<h:form style="display: inline-block">
 				<p:menubar styleClass="menu-sistema">
-					<p:submenu label="Cadastros">
+					<p:submenu label="Cadastros" rendered="#{seguranca.mostrar}">
 						<p:menuitem value="Professores"
 							outcome="/professores/PesquisaProfessores" />
 						<p:separator />
@@ -48,7 +48,7 @@
 					</p:submenu>
 					<p:menuitem value="Nova Reserva"
 						outcome="/reservas/CadastroReserva" />
-					<p:menuitem value="Relatório" outcome="/reservas/PesquisaReservas" />
+					<p:menuitem value="Relatório" outcome="/reservas/PesquisaReservas" rendered="#{seguranca.mostrar}"/>
 					<p:menuitem value="Sair" url="/j_spring_security_logout" />
 				</p:menubar>
 			</h:form>
